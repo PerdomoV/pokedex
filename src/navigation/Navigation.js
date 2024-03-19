@@ -1,6 +1,7 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import AccountScreen from "../screens/Account";
-import FavoriteScreen from "../screens/Favorite";
+// import FavoriteScreen from "../screens/Favorite";
+import FavoriteNavigation from "./FavoriteNavigation";
 import PokedexScreen from "../screens/Pokedex";
 import Icon from 'react-native-vector-icons/Ionicons';
 import { Image } from 'react-native';
@@ -14,7 +15,7 @@ export default function Navigation() {
     <Tab.Navigator>
       <Tab.Screen
         name="Favorite"
-        component={FavoriteScreen}
+        component={FavoriteNavigation}
         options={{
           tabBarLabel: "Favoritos",
           tabBarIcon: ({ color, size }) => (
