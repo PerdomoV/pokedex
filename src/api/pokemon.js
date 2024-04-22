@@ -13,3 +13,15 @@ export async function getPokemonsApi(){
     }
 
 }
+
+
+export async function getPokemonDetailByUrlApi(url){
+    try{
+        const response = await fetch(url);
+        const result = await response.json();
+        // console.log('pokemonDetail: ', result);
+        return result;
+    } catch(error){
+        throw error;
+    }
+}
