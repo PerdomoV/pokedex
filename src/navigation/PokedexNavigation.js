@@ -9,8 +9,9 @@ export default function FavoriteNavigation() {
     <Stack.Navigator>
       <Stack.Screen name="Pokedex" component={PokedexScreen}
         options={{
-          title: "Pokedex",
-          headerTitleAlign: "center"
+          title: "",
+          headerTitleAlign: "center",
+          headerTransparent: true
         }}
       />
       <Stack.Screen name="Pokemon" component={PokemonScreen} />

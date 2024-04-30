@@ -27,31 +27,17 @@ export default function Pokedex(){
 
       for(const pokemon of response['results']){
         const details = await getPokemonDetailByUrlApi(pokemon.url);
-        pokemonDetailPromisesArray.push(details);
+        pokemonDetailPromisesArray.push({ 
+          id: details.id,
+          name: details.name,
+          type: details.types[0].type.name,
+          order: details.order,
+          image: details.sprites.other["official-artwork"].front_default
+        });
       };
-
-      // console.log('pokemonDetailPromisesArray : ', pokemonDetailPromisesArray);
 
       setPokemons(pokemonDetailPromisesArray);
 
-      // getPokemonDetailByUrlApi(pokemon.url) 
-      // const pokemonsArray = Promise.all(  response['results'].map( pokemon => getPokemonDetailByUrlApi(pokemon.url) ) );
-
-      // console.log('pokemonDetailPromisesArray: ', pokemonDetailPromisesArray);
-      // console.log('response: ', Object.keys(response));
-      // const pokemonsArray = [];
-      // for await (const pokemon of response['results']){
-      //   const pokemonDetails = await getPokemonDetailByUrlApi(pokemon.url);
-      //   pokemonsArray.push({
-      //     id: pokemonDetails.id,
-      //     name: pokemonDetails.type[0].type.name,
-      //     order: pokemonDetails.order,
-      //     image: pokemonDetails.sprites.other['official-artwork'].frontDefault
-      //   });
-      // }
-      // setPokemons([ ...pokemons, ...pokemonsArray ]);
-      // console.log('pokemons: ', pokemons);
-    
     }catch(error){
       console.error('Error en loadPokemons: ', error);
       throw error;
