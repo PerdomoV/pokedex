@@ -5,7 +5,8 @@ import { PokemonList } from "../components/PokemonList";
 
 export default function Pokedex(){
 
-  const [pokemons, setPokemons] = useState({});
+  const [nextUrl, setNextUrl] = useState(null);
+  const [pokemons, setPokemons] = useState([]);
 
   useEffect( () => {
     (async ()=> {
@@ -16,13 +17,8 @@ export default function Pokedex(){
   const loadPokemons = async () => {
     try{
 
-      // console.log('En el useEffect');
-      const response = await getPokemonsApi();
-      // console.log('typeof response: ', typeof response['results']);
-      // console.log('response.results: ', response['results']);
-      // console.log('response.results[0]: ', response['results'][0]);
-      // response['results'].forEach( item => console.log('item: ', item))
-
+      const response = await getPokemonsApi(nextUrl);
+      setNextUrl(response.next);
       let pokemonDetailPromisesArray = [];
 
       for(const pokemon of response['results']){
@@ -36,7 +32,7 @@ export default function Pokedex(){
         });
       };
 
-      setPokemons(pokemonDetailPromisesArray);
+      setPokemons([...pokemons, ...pokemonDetailPromisesArray]);
 
     }catch(error){
       console.error('Error en loadPokemons: ', error);
@@ -46,7 +42,7 @@ export default function Pokedex(){
 
   return (
     <SafeAreaView>
-      <PokemonList pokemons={pokemons}/>
+      <PokemonList pokemons={pokemons} loadPokemons={loadPokemons}/>
     </SafeAreaView>
   );
 
