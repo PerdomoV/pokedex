@@ -5,10 +5,8 @@ export function PokemonList(props){
 
     const { pokemons, loadPokemons } = props;
 
-    console.log(props);
 
     const loadMore = () => {
-        console.log('Cargando mas pokemons');
         loadPokemons();
     }
 
