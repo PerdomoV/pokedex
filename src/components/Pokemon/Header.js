@@ -4,7 +4,7 @@ import getColorByPokemonType from "../../utils/getColorByPokemonType";
 
 export default function Header(props){
 
-    console.log('props en Header: ', props);
+    // console.log('props en Header: ', props);
 
     const {
         name,
@@ -15,24 +15,21 @@ export default function Header(props){
 
     const color = getColorByPokemonType(type);
     const bgStyle= [{ backgroundColor: color, ...styles.bg }];
+    console.log('bgStyle: ', bgStyle);
 
     return (
-        <>
-            <View style={bgStyle}>
-                <SafeAreaView style={styles.content}>
-                    <View style={styles.header}>
-                        <Text style={styles.name}>
-                            {capitalize(name)}
-                        </Text>
-                        <Text style={styles.order}>
-                            #{`${ order }`.padStart(3, 0)}
-                        </Text>
-                    </View>
-                    <View>
-                        <Image source={{uri: image}} style={styles.image} />
-                    </View>
-                </SafeAreaView>
-            </View>
+        <>            
+            <View style={bgStyle}/>
+
+            <SafeAreaView style={styles.content}>
+                <View style={styles.header}>
+                    <Text style={styles.name}>{capitalize(name)}</Text>
+                    <Text style={styles.order}>#{`${order}`.padStart(3, 0)}</Text>
+                </View>
+                <View style={styles.contentImg}>
+                    <Image source={{ uri: image }} style={styles.image} />
+                </View>
+            </SafeAreaView>
         </>
     );
 }
@@ -41,11 +38,11 @@ const styles = StyleSheet.create({
 
     bg: {
         width: "100%",
-        hegiht: 400,
+        height: 800,
         position: "absolute",
         borderBottomEndRadius: 300,
         borderBottomLeftRadius: 300,
-        trasnform: [{ scaleX: 2 }]
+        transform: [{ scaleX: 2 }]
     },
 
     content: {
@@ -54,6 +51,7 @@ const styles = StyleSheet.create({
     },
 
     header: {
+        flex: 1,
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
