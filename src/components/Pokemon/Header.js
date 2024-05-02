@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
 
     bg: {
         width: "100%",
-        height: 800,
+        height: 400,
         position: "absolute",
         borderBottomEndRadius: 300,
         borderBottomLeftRadius: 300,
